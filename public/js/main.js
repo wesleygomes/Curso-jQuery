@@ -34,14 +34,18 @@
 				tempoRestante--;
 				$("#tempo-digitacao").text(tempoRestante);
 				if(tempoRestante < 1){
-					$(".campo-digitacao").attr('disabled', true);
 					clearInterval(cronometroID);
-					$(".campo-digitacao").toggleClass("campoDisable");
+					finalizaJogo();
 				}
 			}, 1000);
 		});
 	}
 
+	function finalizaJogo(){
+		$(".campo-digitacao").attr('disabled', true);
+		$(".campo-digitacao").toggleClass("campoDisable");
+		inserePlacar();
+	}
 	
 	function inicializaMarcadores(){
 		var frase = $(".frase").text();
@@ -49,22 +53,13 @@
 		$(".campo-digitacao").on('input', function(){
 			var digitado = $(this).val();
 			var comparavel = frase.substr(0, digitado.length);
-			
 			/*mesma coisa de cima usando o starsWith*/
 			/*var digitouCorreto = frase.startsWith(digitado);*/
-
 
 			var ehCorreto = (digitado == comparavel);
 
 			$(".campo-digitacao").toggleClass("borda-verde", ehCorreto);
 			$(".campo-digitacao").toggleClass("borda-vermelha", !ehCorreto);
-			/*if (digitado == comparavel) {
-				$(".campo-digitacao").removeClass('borda-vermelha');
-				$(".campo-digitacao").addClass('borda-verde');
-			}else{
-				$(".campo-digitacao").removeClass('borda-verde');
-				$(".campo-digitacao").addClass('borda-vermelha');
-			}*/
 		});
 	}
 
