@@ -24,3 +24,13 @@
 .borda-vermelha{
 	border: 3px solid red;
 }
+
+.placar{
+	display: none;
+}
+
+#erro{
+	display: none;
+	color: red;
+
+}

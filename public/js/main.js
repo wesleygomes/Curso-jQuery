@@ -11,7 +11,11 @@
 
 	});
 
-	function atualizaTamanhoFrase(){	
+	function atualizaTempoInicial(tempo) {
+		$("#tempo-digitacao").text(tempo);
+	}
+
+	function atualizaTamanhoFrase(){
 		var frase = $(".frase").text();
 		var numeropalavra = frase.split(" ").length;
 		$("#tamanhoFrase").text(numeropalavra);
@@ -26,10 +30,11 @@
 			$("#contato-caracteres").text(conteudo.length);
 		});
 	}
-	
+
 	function inicializaCronometro(){
-		var tempoRestante = $("#tempo-digitacao").text();
+
 		$(".campo-digitacao").one('focus', function(){
+			var tempoRestante = $("#tempo-digitacao").text();
 			var cronometroID = setInterval(function(){
 				tempoRestante--;
 				$("#tempo-digitacao").text(tempoRestante);
@@ -46,11 +51,10 @@
 		$(".campo-digitacao").toggleClass("campoDisable");
 		inserePlacar();
 	}
-	
-	function inicializaMarcadores(){
-		var frase = $(".frase").text();
 
+	function inicializaMarcadores(){
 		$(".campo-digitacao").on('input', function(){
+			var frase = $(".frase").text();
 			var digitado = $(this).val();
 			var comparavel = frase.substr(0, digitado.length);
 			/*mesma coisa de cima usando o starsWith*/
@@ -74,5 +78,3 @@
 		$(".campo-digitacao").removeClass('borda-verde');
 		$(".campo-digitacao").removeClass('borda-vermelha');
 	}
-
-	
